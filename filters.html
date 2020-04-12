@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>SVG Filters</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row align-items-center justify-content-between">
+			<h1 class="text-muted text-dark">SVG filters</h1>
+			<ul class="nav">
+				<li class="nav-item"><a href="index.html" class="nav-link">Index</a></li>
+				<li class="nav-item"><a href="filters.html" class="nav-link">Filters</a></li>
+				<li class="nav-item"><a href="gradients.html" class="nav-link">Gradients</a></li>
+			</ul>
+		</div>
+		<hr class="my-5">
+
+		<div class="row">
+			
+			<div class="col-lg-12">
+				<h5>Initial</h5>
+				<svg width="400" height="220">
+					<rect width="90" x="15" y="15" height="90" stroke="green" stroke-width="3" fill="yellow"/>
+				</svg>
+			</div>
+			<!-- /.col-lg-4 -->
+
+			<div class="col-lg-4">
+				<h5>feGaussianBlur</h5>
+				<svg width="400" height="220">
+					<defs>
+						<filter id="f0" x="0" y="0">
+							<feGaussianBlur in="SourceGraphic" stdDeviation="15" />
+						</filter>
+					</defs>
+					<rect width="90" x="15" y="15" height="90" stroke="green" stroke-width="3" fill="yellow" filter="url(#f0)" />
+				</svg>
+			</div>
+			<!-- /.col-lg-4 -->
+
+			<div class="col-lg-4">
+				<h5>feOffset + feBlend </h5>
+				<svg width="400" height="220">
+					<defs>
+						<filter id="f1" x="0" y="0" width="200%" height="200%">
+							<feOffset result="shadowCopy" in="SourceGraphic" dx="20" dy="20" />
+							<feBlend in="SourceGraphic" in2="shadowCopy" />
+						</filter>
+					</defs>
+					<rect width="90" x="15" y="15" height="90" stroke="green" stroke-width="3" fill="yellow" filter="url(#f1)" />
+				</svg>
+			</div>
+			<!-- /.col-lg-4 -->
+
+			<div class="col-lg-4">
+				<h5>feOffset + feBlend + feGaussianBlur</h5>
+				<svg width="400" height="220">
+					<defs>
+						<filter id="f2" x="0" y="0" width="200%" height="200%">
+							<feOffset result="shadowCopy" in="SourceGraphic" dx="20" dy="20" />
+							<feGaussianBlur result="shadowCopyBlured" in="shadowCopy" stdDeviation="10" />
+							<feBlend in="SourceGraphic" in2="shadowCopyBlured" />
+						</filter>
+					</defs>
+					<rect width="90" x="15" y="15" height="90" stroke="green" stroke-width="3" fill="yellow" filter="url(#f2)" />
+				</svg>
+			</div>
+			<!-- /.col-lg-4 -->
+
+			<div class="col-lg-4">
+				<h5>feOffset + feBlend + feGaussianBlur (SourceAlpha)</h5>
+				<svg width="400" height="220">
+					<defs>
+						<filter id="f3" x="0" y="0" width="200%" height="200%">
+							<feOffset result="shadowCopy" in="SourceAlpha" dx="20" dy="20" />
+							<feGaussianBlur result="shadowCopyBlured" in="shadowCopy" stdDeviation="10" />
+							<feBlend in="SourceGraphic" in2="shadowCopyBlured" />
+						</filter>
+					</defs>
+					<rect width="90" x="15" y="15" height="90" stroke="green" stroke-width="3" fill="yellow" filter="url(#f3)" />
+				</svg>
+			</div>
+			<!-- /.col-lg-4 -->
+
+			<div class="col-lg-4">
+				<h5>feOffset + feBlend + feGaussianBlur (feColorMatrix)</h5>
+				<svg width="400" height="220">
+					<defs>
+						<filter id="f4" x="0" y="0" width="200%" height="200%">
+							<feOffset
+								result="shadowCopy"
+								in="SourceGraphic"
+								dx="20"
+								dy="20" />
+							<feColorMatrix
+								result="shadowMatrix"
+								in="shadowCopy"
+								type="matrix"
+								values="
+								0.2 0 0 0 0 0
+								0.2 0 0 0 0 0
+								0.2 0 0 0 0 0
+								1 0" />
+
+							<feGaussianBlur result="shadowCopyBlured" in="shadowMatrix" stdDeviation="10" />
+							<feBlend in="SourceGraphic" in2="shadowCopyBlured" />
+						</filter>
+					</defs>
+					<rect width="90" x="15" y="15" height="90" stroke="green" stroke-width="3" fill="yellow" filter="url(#f4)" />
+				</svg>
+			</div>
+			<!-- /.col-lg-4 -->
+
+		</div>
+		<!-- /.row -->
+
+	</div>
+
+	<script src="main.js"></script>
+</body>
+</html>
