@@ -1,3 +1,113 @@
+* {
+	box-sizing: border-box;
+}
 body {
 	background: url('texture.png');
+}
+
+/* Man on the bike */
+#right-wheel,
+#left-wheel {
+	animation: wheel 2s linear infinite;
+	transform-origin: center;
+	transform-box: fill-box;
+}
+#bike-man {
+	animation: bike 1s ease-in-out infinite alternate;
+	transform-origin: bottom;
+}
+#hat {
+	animation: hat 1s ease-in-out infinite alternate;
+	transform-origin: center;
+	transform-box: fill-box;
+}
+
+@keyframes wheel {
+	from {
+		transform: rotateZ(0deg);
+	}
+	to {
+		transform: rotateZ(360deg);
+	}
+}
+
+@keyframes bike {
+	from {
+		transform: rotateX(0deg);
+	}
+	to {
+		transform: rotateX(20deg);
+	}
+}
+
+@keyframes hat {
+	from {
+		transform: translateY(0) rotateZ(0);
+	}
+	to {
+		transform: translateY(45%) rotateZ(5deg);
+	}
+}
+
+/* Girl on the wind*/
+
+#leaf-1,
+#leaf-2,
+#leaf-3,
+#leaf-4,
+#leaf-5,
+#leaf-7,
+#leaf-6 {
+	animation: leaf 5s linear infinite;
+	transform-origin: center;
+	transform-box: fill-box;
+}
+
+#hair-1 {
+	animation: hair 5s ease-in-out infinite;
+	transform-origin: center;
+	transform-box: fill-box;
+}
+
+
+@keyframes leaf {
+	0% {
+		opacity: 1;
+		transform: rotateY(0) translate(0, 0);
+	}
+	25% {
+		transform: rotateY(-20deg) translate(-50%, -50%);
+	}
+	50% {
+		opacity: 0;
+		transform: rotateY(20deg) translate(-100%, -100%);
+	}
+	51% {
+		transform: rotateY(0) translate(0, 0);
+	}
+	80% {
+		opacity: 0;
+		transform: rotateY(0) translate(0, 0) scale(0.5);
+	}
+	95%	{
+		transform: rotateY(0) translate(0, 0) scale(1);
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes hair {
+	0% {
+		transform: rotate(0) translate(0);
+	}
+	25% {
+		transform: rotate(10deg) translate(-2%);
+	}
+	50% {
+		transform: rotate(15deg) translate(-2%);
+	}
+	100% {
+		transform: rotate(0) translate(0);
+	}
 }
